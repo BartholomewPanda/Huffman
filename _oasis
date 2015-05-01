@@ -1,0 +1,15 @@
+OASISFormat: 0.4
+Name:        huffman
+Version:     0.1
+Synopsis:    Simple library that allows to implement a Huffman coding with
+  any kind of symbols.
+Authors:     Bartholomew
+License:     MIT
+Plugins: DevFiles (0.4), META (0.4)
+
+Library huffman
+  Path:            src
+  BuildTools:      ocamlbuild
+  Modules:         Huffman
+  InternalModules: Utils, Tree
+
