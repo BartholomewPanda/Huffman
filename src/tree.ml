@@ -9,6 +9,8 @@
 (*                                                                     *)
 (***********************************************************************)
 
+exception Not_found
+
 type 'a t =
     | Node of ('a t * 'a t)
     | Leaf of 'a
@@ -31,11 +33,13 @@ let iter_leaves tree pred =
 let rec search_leaf tree path =
     match tree with
         | Leaf value          -> value
-        | Node (ltree, rtree) ->
-            let direction = List.hd path in
-            let path = List.tl path in
-            if direction = 0 then
-                search_leaf ltree path
-            else
-                search_leaf rtree path
+        | Node (ltree, rtree) -> begin
+            match path with
+                | direction :: path ->
+                    if direction = 0 then
+                        search_leaf ltree path
+                    else
+                        search_leaf rtree path
+                | _ -> raise Not_found
+        end
 
