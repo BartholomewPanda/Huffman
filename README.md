@@ -38,6 +38,7 @@ let tree, compressed_stream = CharHuffman.compress stream
 Henceforth, if you want to decompress a stream of bits and display decoded
 characters:
 ```
+let decompressed_stream = CharHuffman.decompress tree compressed_stream in
 Stream.iter (Printf.printf "%c") decompressed_stream;
 Printf.printf "\n"
 ```
